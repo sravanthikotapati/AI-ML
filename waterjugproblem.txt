@@ -1,0 +1,45 @@
+print("Rule 1:Fill x\n Rule 2:Fill y\n Rule 3:Empty x\n Rule 4:Empty y\n Rule 5:From y to x\n Rule 6:From x to y\n Rule 7:From y to x complete\n Rule 8:From x to y complete\n")
+cap_x = int(input("Enter the jug 1 capacity: "))
+cap_y = int(input("Enter the jug 2 capacity: "))
+req_lis = list(map(str,input("Enter the required amount of water and in the jug you needed with space seperate: ").split()))
+req_amount = int(req_lis[0])
+req_jug = req_lis[1]
+x=y=0
+while(True):
+    rule = int(input("Enter the rule: "))
+    if rule==1:
+        if x<cap_x:
+            x = cap_x
+    if rule==2:
+        if y<cap_y:
+            y = cap_y
+    if rule==3:
+        if x>0:
+            x = 0
+    if rule==4:
+        if y>0:
+            y = 0
+    if rule==5:
+        if 0<x+y>=cap_x and y>0:
+            x,y = cap_x,y-(cap_x-x)
+    if rule==6:
+        if 0<x+y>=cap_y and x>0:
+            x,y = x-(cap_y-y),cap_y
+    if rule==7:
+        if 0<x+y<=cap_x and y>=0:
+            x = x+y
+            y = 0
+    if rule==8:
+        if 0<x+y<=cap_y and x>=0:
+            y = x+y
+            x = 0
+    print("x :",x)
+    print("y :",y)
+    if req_jug=='x':
+        if req_amount==x:
+            print("Goal reached")
+            break
+    elif req_jug=='y':
+        if req_amount==y:
+            print("Goal reached")
+            break
